@@ -12,10 +12,21 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from pathlib import Path
 
+import dj_database_url
+DATABASES = {
+    'default': dj_database_url.config(default='postgres://user:password@localhost/dbname')
+}
+
 # Media settings
 BASE_DIR = Path(__file__).resolve().parent.parent
 MEDIA_URL = '/media/'  # URL to access media files
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Path to store uploaded files
+
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 
@@ -28,7 +39,9 @@ SECRET_KEY = "django-insecure-f0^=m32h5nav)u4v-lg%neha3a9+%&f#5kjx)q7_9cv(^+!2!l
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'recipe-book-project-1.onrender.com']
+
 
 
 # Application definition
