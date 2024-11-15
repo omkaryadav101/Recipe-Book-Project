@@ -40,7 +40,8 @@ SECRET_KEY = "django-insecure-f0^=m32h5nav)u4v-lg%neha3a9+%&f#5kjx)q7_9cv(^+!2!l
 DEBUG = True
 
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'recipe-book-project-1.onrender.com']
+ALLOWED_HOSTS = ['recipe-book-project-1.onrender.com', 'localhost', '127.0.0.1']
+
 
 
 
