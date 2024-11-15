@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe List</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .hero-section {
+            background-image: url('https://img.freepik.com/free-photo/top-view-fresh-vegetables-red-pepper-powder-turmeric-small-bowls-wooden-spoons-table-free-space_140725-147447.jpg?t=st=1731666506~exp=1731670106~hmac=28006cd67a33d25b65dfdb00224b6a25124b6d0b72ab0f63e5991f2360a41a7d&w=1060');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 50px 0;
+        }
+        .btn-primary {
+            background-color: #f08a5d;
+            border-color: #f08a5d;
+        }
+        .btn-primary:hover {
+            background-color: #d6704b;
+            border-color: #d6704b;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero-section text-center">
+        <div class="container">
+            <h1 class="display-4">Welcome to the Recipe Book</h1>
+            <p class="lead">Discover and Create Delicious Recipes!</p>
+            <a href="{% url 'recipe_add' %}" class="btn btn-primary btn-lg">Add Your Recipe</a>
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <h2 class="text-center">All Recipes</h2>
+
+        <div class="row">
+            {% for recipe in object_list %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        {% if recipe.image %}
+                            <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}" class="card-img-top">
+                        {% else %}
+                            <img src="https://via.placeholder.com/350x250?text=No+Image" class="card-img-top" alt="Placeholder Image">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ recipe.title }}</h5>
+                            <p class="card-text">{{ recipe.ingredients|slice:":100" }}...</p>
+                            <a href="{% url 'recipe_detail' recipe.pk %}" class="btn btn-info">View Recipe</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>

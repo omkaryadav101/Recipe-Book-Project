@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Form</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Add a New Recipe</h2>
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="id_title">Recipe Title</label>
+                    <input type="text" class="form-control" id="id_title" name="title" value="{{ form.title.value }}">
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="id_image">Recipe Image</label>
+                    <input type="file" class="form-control-file" id="id_image" name="image" value="{{ form.image.value }}">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="id_ingredients">Ingredients</label>
+                <textarea class="form-control" id="id_ingredients" name="ingredients">{{ form.ingredients.value }}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="id_instructions">Instructions</label>
+                <textarea class="form-control" id="id_instructions" name="instructions">{{ form.instructions.value }}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="id_cooking_time">Cooking Time</label>
+                <input type="text" class="form-control" id="id_cooking_time" name="cooking_time" value="{{ form.cooking_time.value }}">
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Save Recipe</button>
+        </form>
+
+        <a href="{% url 'recipe_list' %}" class="btn btn-secondary mt-3">Back to Recipe List</a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+
